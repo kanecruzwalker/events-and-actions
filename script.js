@@ -5,7 +5,7 @@ for (var i = 0; i < button.length; i++){
     var listener = button[i].addEventListener("click", function (){
         var clickedButton = this.innerHTML;
         makeSound(clickedButton);
-        
+        buttonAnimation(clickedButton);
     });
 }
 
@@ -13,6 +13,7 @@ for (var i = 0; i < button.length; i++){
 document.addEventListener("keydown", function pressed(event){
     var keypressed = event.key;
     makeSound(keypressed);
+    buttonAnimation(keypressed);
 });
 
 // Choose Sound
@@ -49,4 +50,12 @@ function makeSound(key) {
         default:
             console.log(key);
     }
+}
+
+function buttonAnimation(currentkey){
+    var currentImage = document.querySelector("." + currentkey)
+    currentImage.classList.add("pressed");
+    setTimeout(function(){
+        currentImage.classList.remove("pressed");
+    }, 100);
 }
