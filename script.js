@@ -1,15 +1,23 @@
-// select elements with class drum
+// Button Press
 var button = document.querySelectorAll(".drum");
-
 // for loop to go through all drum classes and add event listeners to each
 for (var i = 0; i < button.length; i++){
-    var listener = button[i].addEventListener("click", handleClick);
+    var listener = button[i].addEventListener("click", function (){
+        var clickedButton = this.innerHTML;
+        makeSound(clickedButton);
+        
+    });
 }
-// the function click carries out.
 
-function handleClick () {
-    var clickedButton = this.innerHTML;
-    switch (clickedButton) {
+// Key Press
+document.addEventListener("keydown", function pressed(event){
+    var keypressed = event.key;
+    makeSound(keypressed);
+});
+
+// Choose Sound
+function makeSound(key) {
+    switch (key) {
         case "w":
         var crash = new Audio ("sounds/crash.mp3");
         crash.play();
@@ -39,9 +47,6 @@ function handleClick () {
         tom4.play()
         break;
         default:
-            console.log(clickedButton);
+            console.log(key);
     }
-
 }
-
-
